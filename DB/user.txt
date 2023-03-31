@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Belen",
+    "apellido": "Arena",
+    "usuario": "arenabelu",
+    "email": "arenabelu@gmail.com",
+    "contrasena": hola123,
+    "admin": true
+  },
+  {
+    "id": 2,
+    "nombre": "Usuario",
+    "apellido": "Prueba",
+    "usuario": "miprueba",
+    "email": "miprueba@gmail.com",
+    "contrasena": 1234,
+    "admin": false
+  }
+]

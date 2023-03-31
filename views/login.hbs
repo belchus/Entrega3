@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>{{titulo}}</title>
+  </head>
+  <body class="body">
+    {{#if messages.error}}
+      <h3 class="error">{{messages.error}}</h3>
+    {{/if}}
+    <form id="login-form" class="login-vertical" action="/login" method="POST">
+      <h2 class="login-title">Login</h2>
+      <label for="email">ingrese su email</label>
+      <input
+        class="input"
+        type="email"
+        id="email"
+        name="email"
+        required
+      />
+      <label for="password">ingrese su password</label>
+      <input
+        class="input"
+        type="password"
+        id="password"
+        name="password"
+        required
+      />
+      <button class="btn" id="btn" type="submit" onclick="login()">Ingresar</button>
+    </form>
+    <button class="btn" onclick="location.href='/register'" type="button">Ir a
+      Register</button>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  </body>
+</html>

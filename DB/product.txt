@@ -1,0 +1,38 @@
+[
+  {
+    "product": "Pulsera Daisy",
+    "price": "999",
+    "stock": "14",
+    "description": "Dijes de margarita de acero quirurgico",
+    "code": "501",
+    "thumbnail": "https://i.postimg.cc/Pq7zR1bx/pulsera4.jpg",
+    "id": 0
+  },
+  {
+    "product": "Pulsera Pink",
+    "price": "800",
+    "stock": "20",
+    "description": "Cuentas de colores pasteles y fleco",
+    "code": "502",
+    "thumbnail": "https://i.postimg.cc/W486sMwT/pulsera2.jpg",
+    "id": 1
+  },
+  {
+    "product": "Pulsera Heart",
+    "price": "1000",
+    "stock": "6",
+    "description": "Dije de corazon rosa de acero quirurgico",
+    "code": "503",
+    "thumbnail": "https://i.postimg.cc/V6cBwmTQ/pulsera8.jpg",
+    "id": 2
+  },
+  {
+    "product": "Pulsera Blue",
+    "price": "1200",
+    "stock": "10",
+    "description": "Dijes de piedras turquesas",
+    "code": "504",
+    "thumbnail": "https://i.postimg.cc/nM8nRSrk/pulsera9.jpg",
+    "id": 3
+  }
+]
