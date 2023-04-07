@@ -3,6 +3,7 @@ const userModel = require("../models/user.js");
 const bcript = require("bcryptjs");
 const {enviarMail} = require ('../utils/mail.js')
 const logger = require ('../utils/logger.js')
+const { connectDB } = require("../config.js");
 
 module.exports = class UserHandler {
   constructor(url) {
@@ -22,7 +23,7 @@ module.exports = class UserHandler {
   }
 
   async saveUser(data) {
-    this.connectDatabase();
+    connectDB();
     const user = await this.findUserByMail(data.email);
     if (user) {
       return null;
@@ -59,19 +60,19 @@ module.exports = class UserHandler {
   }
 
   async findUserByMail(email) {
-    this.connectDatabase();
+    connectDB();
     const response = await userModel.findOne({ email: email });
     return response;
   }
 
   async findUserById(id) {
-    this.connectDatabase();
+    connectDB();
     const response = await userModel.findOne({ id: id });
     return response;
   }
 
   async getHighestId() {
-    this.connectDatabase();
+    connectDB();
     const data = await userModel.find({}, { id: 1, _id: 0 });
     if (data.length == 0) {
       return 1;

@@ -5,12 +5,11 @@ const name = document.getElementById("name").innerHTML;
 const lastName = document.getElementById("last-name").innerHTML;
 const email = document.getElementById("user-name").innerHTML;
 
-//control de usuario activo
+
 let userId = 0;
 let isAdmin = false;
 
 function admin() {
-  //esta función se encarga de habilitar opciones especiales de edición para administradores, no tocar..
   if (isAdmin) {
     return "true";
   } else {
@@ -33,7 +32,6 @@ async function userType(tipo, id) {
 }
 
 async function updateUser(id) {
-  //actualización del usuario logueado: se encarga de mandar un mensaje al servidor indicando qué usuario se encuentra activo
   const url = "api/usuarios/login";
   const payload = {
     id: id,
@@ -118,7 +116,6 @@ async function mainBody() {
   });
 }
 
-//manejo de productos
 async function crearProducto() {
   const contenido = `
     <div class="card-container">

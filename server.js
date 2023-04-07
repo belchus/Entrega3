@@ -1,6 +1,6 @@
 require("dotenv").config();
-
-
+const router = require("express").Router();
+const { fork } = require("child_process");
 const express = require("express");
 const app = express();
 const { engine } = require("express-handlebars");
@@ -14,6 +14,9 @@ const passport = require("passport");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const MongoStore = require("connect-mongo");
+const {  createUser, findUser } = require("../controllers/usuarios.js");
+const { listAll,randomize } = require("../controllers/productos.js");
+const { getAllChats } = require("../controllers/chats.js");
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 const mongoUrl = process.env.MONGOURL;
 const userHandler = require("./classes/userH.js");
@@ -151,17 +154,73 @@ app.post('/purchase', auth, (req, res) => {
   main.notifyPurchase(req.body)
 } )
 
-app.get("/exit", (req, res) => {
-  req.logout();
-  return res.redirect("/");
+router.get("/exit", (req, res) => {
+  logger.info(`ruta: '/exit' - método: get peticionada`);
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 });
 
-app.get("/register", notAuth, main.registerGet);
+// app.get("/register", notAuth, main.registerGet);
+router.get("/register", notAuth, (req, res) => {
+  logger.info(`ruta: '/register' - método: get peticionada`);
+  res.render("register", { titulo: "Sing In" });
+});
 
-app.post("/register", notAuth, upload.single("avatar"), main.registerPost);
+//app.post("/register", notAuth, upload.single("avatar"), main.registerPost);
+router.get("/register", notAuth, (req, res) => {
+  logger.info(`ruta: '/register' - método: get peticionada`);
+  res.render("register", { titulo: "Registro de usuario nuevo" });
+});
+
+router.post("/register", notAuth, async (req, res) => {
+  logger.info(`ruta: '/register' - método: post peticionada`);
+  if ((await findUser(req.body.email)) !== null) {
+    res.render("register", {
+      titulo: "Registro de usuario nuevo",
+      error: "El usuario ya existe",
+    });
+  } else {
+    try {
+      createUser(req.body);
+      res.redirect("/login");
+    } catch (error) {
+      console.log(error);
+      res.redirect("/register");
+    }
+  }
+});
 
 app.get("/logout", auth, (req, res) => {
+  logger.info(`ruta: '/logout' - método: get peticionada`);
   res.render("logout", { nombre: req.user.nombre, titulo: "cierre de sesión" });
 });
 
 app.get("*", main.notFound);
+
+router.get("/", auth, async (req, res) => {
+  logger.info(`ruta: '/' - método: get peticionada`);
+  res.render("main", {
+    email: req.user.email,
+    titulo: "Home",
+    lista: listAll(),
+    mensajes: getAllChats(),
+  });
+});
+
+router.get("/info", auth, (req, res) => {
+  logger.info(`ruta: '${req.url}' - método: get peticionada`);
+  res.render("info", { titulo: "Info del Proceso" });
+});
+
+router.get('/api/productos-test', async (req, res) => {
+  logger.info(`ruta: '${req.url}' - método: get peticionada`);
+  const {cant} = req.query
+  res.render("test",{
+    titulo: "TEST",
+    lista: await randomize(parseInt(cant))
+  })
+})

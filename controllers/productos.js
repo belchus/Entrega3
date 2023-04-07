@@ -27,4 +27,14 @@ async function deleteProduct(req, res) {
     return res.send(resultado);
 }
 
-module.exports = { listAll, listById, createProduct, modifyProduct, deleteProduct }
+async function randomize(cant) {
+    if (isNaN(cant)) {
+        const resultado = await productDao.random(5)
+        return res.send(resultado);
+    } else {
+        const resultado = await productDao.random(cant)
+        return  res.send(resultado);
+    }
+
+}
+module.exports = { listAll, listById, createProduct, modifyProduct, deleteProduct,randomize}

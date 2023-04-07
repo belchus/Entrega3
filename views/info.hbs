@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <title>{{titulo}}</title>
+</head>
+
+<body class="body">
+    <h1>Info del Proceso</h1>
+    <div class="info" id="args">Argumentos de entrada</div>
+    <div class="info" id="plat">Nombre de plataforma</div>
+    <div class="info" id="version">Versión de Node.js</div>
+    <div class="info" id="memoria">Memoria total reservada (rss)</div>
+    <div class="info" id="exe">Path de ejecución</div>
+    <div class="info" id="id">Process Id</div>
+    <div class="info" id="path">Carpeta del proyecto</div>
+    <div class="info" id="processors">Cantidad de procesadores</div>
+    <script src="js/info.js"></script>
+</body>
+
+</html>

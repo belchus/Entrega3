@@ -1,7 +1,5 @@
 const express = require ('express')
 const router = express.Router()
-
-//controllers requeridos
 const cart = require('../controllers/cart.js')
 
 
